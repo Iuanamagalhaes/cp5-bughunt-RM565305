@@ -36,8 +36,7 @@ public class AtendimentoBuilder {
         return this;
     }
 
-    // A validacao dos campos obrigatorios fica por conta do controller,
-    // que conhece a regra de negocio do PetFiap.
+    // O objeto já nasce válido, porque o nome do pet e o porte são obrigatórios e a validação acontece aqui mesmo, seguindo as regras do sistema
     public Atendimento construir(int protocolo) {
         if (petNome == null || petPorte == null) {
             throw new IllegalArgumentException("Nome do pet e porte são obrigatórios.");
