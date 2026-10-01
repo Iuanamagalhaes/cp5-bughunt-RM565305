@@ -137,5 +137,16 @@ public class AgendaServiceTest {
         verify(repository, never()).save(any());
     }
 
+    @Test
+    public void deveRecusarConclusaoDeAtendimentoJaCancelado() {
+        // Arrange
+        Banho jaCancelado = banhoDoRexAmanha10h();
+        jaCancelado.setStatus("CANCELADO");
+        when(repository.findById(1L)).thenReturn(Optional.of(jaCancelado));
 
+        // Act + Assert
+        assertThrows(StatusInvalidoException.class, () -> service.concluir(1L));
+
+        verify(repository, never()).save(any());
+    }
 }
